@@ -30,12 +30,12 @@ class _IntroductionState extends State<Introduction> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
+    const bodyStyle = TextStyle(fontSize: 19.0, letterSpacing: 1, wordSpacing: 2, fontWeight: FontWeight.w300);
 
     const pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
-      descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      descriptionPadding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
       imagePadding: EdgeInsets.zero,
     );
 
@@ -46,7 +46,7 @@ class _IntroductionState extends State<Introduction> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 0, left: 5),
-            child: Image.asset('assets/QRSN.png', width: 75),
+            child: Image.asset('assets/QRSN.png', width: 65),
           ),
         ),
       ),
@@ -79,49 +79,33 @@ class _IntroductionState extends State<Introduction> {
         PageViewModel(
           title: "Hello There!",
           body:
-          "Welcome to My Sunshine",
+          "Welcome to My Sunshine.\n\nWhere you can view data about the weather and the \"Sunshine\"",
           image: _buildImage('logo.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Another title page",
-          body: "Another beautiful body text for this example onboarding",
-          image: _buildImage('gaps.jpg'),
-          footer: ElevatedButton(
-            onPressed: () {
-              introKey.currentState?.animateScroll(0);
-            },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-          ),
+          title: "Interactive Design",
+          body: "Graphs allow Zooming and Panning.\n\nAlongside toggling the visibility of different parameters.",
+          image: _buildImage('zoom_pan.gif', 400),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Title of last page - reversed",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
+          title: "Choose The Location",
+          body: "You can either locate your location automatically or choose the location you like.",
+          image: ClipRRect(
+            child: _buildImage('map_page.png', 400),
+            borderRadius: BorderRadius.circular(5),
           ),
           decoration: pageDecoration.copyWith(
-            bodyFlex: 2,
-            imageFlex: 4,
-            bodyAlignment: Alignment.bottomCenter,
-            imageAlignment: Alignment.topCenter,
+            imageFlex: 1,
+            imagePadding: const EdgeInsets.only(top: 50),
           ),
-          image: _buildImage('main_logo2.png'),
-          reverse: true,
+        ),
+        PageViewModel(
+          title: "Data Inconsistency",
+          body: "If your graph looks like this.\n\nThis means that the data at the corresponding dates are unavailable.",
+          image: _buildImage('gaps.jpg'),
+          decoration: pageDecoration
         ),
       ],
       onDone: () => _onIntroEnd(context),
