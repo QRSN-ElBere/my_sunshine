@@ -37,10 +37,10 @@ class _SettingsState extends State<Settings> {
       ListTile(
         onTap: () {},
         title: Text(
-          'General',
+          'Change Language',
           style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w500),
         ),
-        leading: Icon(Icons.settings, size: _iconSize, color: iconsColor),
+        leading: Icon(Icons.translate, size: _iconSize, color: iconsColor),
       ),
       ListTile(
         onTap: () {Navigator.pushNamed(context, '/maps');},

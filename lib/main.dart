@@ -1,3 +1,5 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:my_sunshine/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:my_sunshine/pages/graph_page.dart';
 import 'package:my_sunshine/pages/home.dart';
@@ -19,6 +21,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+
   SharedPreferences.getInstance().then((instance) {
     runApp(
         MaterialApp(
@@ -30,6 +33,14 @@ void main() async {
             '/graph': (context) => const GraphPage(),
             '/maps': (context) => Maps(instance),
           },
+          locale: const Locale('en'),
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
         )
     );
