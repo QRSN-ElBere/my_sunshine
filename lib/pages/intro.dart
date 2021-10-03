@@ -91,7 +91,7 @@ class _IntroductionState extends State<Introduction> {
         ),
         PageViewModel(
           title: "Choose The Location",
-          body: "You can either locate your location automatically or choose the location you like.",
+          body: "You can either locate your location automatically, choose the location manually, or search for it.",
           image: ClipRRect(
             child: _buildImage('map_page.png', 400),
             borderRadius: BorderRadius.circular(5),

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:my_sunshine/services/address_search.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
+import 'package:uuid/uuid.dart';
 
 class Maps extends StatefulWidget {
   final SharedPreferences sharedPrefs;
@@ -102,7 +104,6 @@ class _MapsState extends State<Maps> {
   }
 
   void search() async {
-    FocusScope.of(context).unfocus();
     List<Location> places = await locationFromAddress(textController.text);
     setState(() {
       newLongitude = places[0].longitude;
@@ -253,12 +254,16 @@ class _MapsState extends State<Maps> {
                       child: TextField(
                         controller: textController,
                         style: const TextStyle(color: Colors.white),
-                        onSubmitted: (_) {search();},
                         onTap: () async {
-                          // showSearch(
-                          //   context: context,
-                          //   delegate: AddressSearch(),
-                          // );
+                          String sessionToken = const Uuid().v4();
+                          String newAddress = await showSearch(
+                            context: context,
+                            delegate: AddressSearch(sessionToken),
+                          );
+                          if (newAddress != '') {
+                            textController.text = newAddress;
+                            search();
+                          }
                         },
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.only(
@@ -274,14 +279,6 @@ class _MapsState extends State<Maps> {
                         ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    tooltip: 'Search',
-                    onPressed: search,
                   ),
                   IconButton(
                     icon: const Icon(

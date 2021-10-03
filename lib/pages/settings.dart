@@ -35,7 +35,11 @@ class _SettingsState extends State<Settings> {
     super.initState();
     _settingsOptions = [
       ListTile(
-        onTap: () {},
+        onTap: () {controller.animateToPage(
+            2,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeIn
+        );},
         title: Text(
           'Change Language',
           style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w500),
@@ -135,6 +139,19 @@ class _SettingsState extends State<Settings> {
           children: [
             settingsList(),
             subPage(child: ListParameters(widget.sharedPrefs, widget.parameters)),
+            // TODO
+            subPage(
+              child: const Center(
+                child: Text(
+                  'Future Update',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50,
+                    color: Colors.red
+                  ),
+                )
+              )
+            )
           ]
         ),
       ),
