@@ -36,7 +36,8 @@ class _IntroductionState extends State<Introduction> {
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
-      imagePadding: EdgeInsets.zero,
+      contentMargin: EdgeInsets.zero,
+      imagePadding: EdgeInsets.only(top: 50),
     );
 
     return IntroductionScreen(
@@ -68,7 +69,6 @@ class _IntroductionState extends State<Introduction> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
-                  fontFamily: 'Times New Roman'
                 ),
               ),
             )
@@ -104,7 +104,7 @@ class _IntroductionState extends State<Introduction> {
         PageViewModel(
           title: "Data Inconsistency",
           body: "If your graph looks like this.\n\nThis means that the data at the corresponding dates are unavailable.",
-          image: _buildImage('gaps.jpg'),
+          image: _buildImage('gaps.jpg', 200),
           decoration: pageDecoration
         ),
       ],

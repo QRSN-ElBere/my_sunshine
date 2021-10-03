@@ -31,6 +31,7 @@ class PlacesProvider {
     Response response = await client.get(url);
     if (response.statusCode == 200) {
       Map result = jsonDecode(response.body);
+      print(result);
       if (result['status'] == 'OK') {
         return result['predictions']
             .map<String>((p) => (p['description'] as String))
