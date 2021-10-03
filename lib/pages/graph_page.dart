@@ -28,10 +28,12 @@ class _GraphPageState extends State<GraphPage> {
       backgroundColor: const Color(0xff132030),
       body: WillPopScope(
         onWillPop: () async {
-          // SystemChrome.setPreferredOrientations([
-          //   DeviceOrientation.portraitUp,
-          //   DeviceOrientation.portraitDown,
-          // ]);
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+            DeviceOrientation.landscapeLeft,
+            DeviceOrientation.landscapeRight,
+          ]);
           return true;
         },
         child: SafeArea(
@@ -43,12 +45,6 @@ class _GraphPageState extends State<GraphPage> {
                 left: 0,
                 child: IconButton(
                   onPressed: () {
-                    SystemChrome.setPreferredOrientations([
-                      DeviceOrientation.portraitUp,
-                      DeviceOrientation.portraitDown,
-                      DeviceOrientation.landscapeLeft,
-                      DeviceOrientation.landscapeRight,
-                    ]);
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.arrow_back),
